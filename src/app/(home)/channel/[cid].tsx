@@ -5,7 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Channel as ChannelType } from 'stream-chat';
 import { Channel, MessageInput, MessageList, useChatContext } from 'stream-chat-expo';
 
-const CnannelScreen = () => {
+export function CnannelScreen() {
     const [channel, setChannel] = useState<ChannelType>();
     const { cid } = useLocalSearchParams<{ cid: string }>();
 
@@ -33,8 +33,4 @@ const CnannelScreen = () => {
             </SafeAreaView>
         </Channel>
     );
-}
-
-export default CnannelScreen
-
-const styles = StyleSheet.create({})
+};
