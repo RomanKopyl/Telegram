@@ -1,6 +1,9 @@
+import { router } from 'expo-router';
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text } from 'react-native';
+import { useChatContext } from 'stream-chat-expo';
 import { supabase } from '../lib/supabase';
+import { useAuth } from '../providers/AuthProvider';
 
 const UserListItem = ({ user }) => {
   const imageUrl = supabase.storage
@@ -9,8 +12,23 @@ const UserListItem = ({ user }) => {
     .data
     .publicUrl;
 
+  const { client } = useChatContext();
+  const { user: me } = useAuth();
+
+  const onPress = async () => {
+    console.log('MEMBERS', me.id, user.id);
+    const channel = client.channel('messaging', {
+      members: [me.id, user.id],
+    });
+
+    await channel.watch();
+    console.log('CHANNEL', channel.cid);
+    
+    router.replace(`/(home)/channel/${channel.cid}`);
+  }
+
   return (
-    <View style={styles.container}>
+    <Pressable onPress={onPress} style={styles.container}>
       <Image
         src={imageUrl}
         style={styles.image}
@@ -18,7 +36,7 @@ const UserListItem = ({ user }) => {
       <Text style={styles.name}>
         {user.full_name}
       </Text>
-    </View>
+    </Pressable>
   )
 }
 

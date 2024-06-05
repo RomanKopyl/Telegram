@@ -38,12 +38,10 @@ export default function ChatProvider({ children }: PropsWithChildren) {
 			// await channel.watch();
 		}
 
-		connect();
+		connect().catch(e => console.log('CONNECT CLIENT ERROR', e));
 
 		return () => {
-			if (isReady) {
-				client.disconnectUser();
-			}
+			client.disconnectUser();
 			setIsReady(false);
 		}
 	}, [profile?.id]);

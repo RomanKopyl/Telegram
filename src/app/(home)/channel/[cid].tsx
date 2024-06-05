@@ -6,31 +6,31 @@ import { Channel as ChannelType } from 'stream-chat';
 import { Channel, MessageInput, MessageList, useChatContext } from 'stream-chat-expo';
 
 export function CnannelScreen() {
-    const [channel, setChannel] = useState<ChannelType>();
-    const { cid } = useLocalSearchParams<{ cid: string }>();
+	const [channel, setChannel] = useState<ChannelType>();
+	const { cid } = useLocalSearchParams<{ cid: string }>();
 
-    const { client } = useChatContext();
+	const { client } = useChatContext();
 
 
-    useEffect(() => {
-        const fetchChannel = async () => {
-            const channels = await client.queryChannels({ cid });
-            setChannel(channels[0]);
-        };
+	useEffect(() => {
+		const fetchChannel = async () => {
+			const channels = await client.queryChannels({ cid });
+			setChannel(channels[0]);
+		};
 
-        fetchChannel();
-    }, [cid]);
+		fetchChannel();
+	}, [cid]);
 
-    if (!channel) {
-        return <ActivityIndicator />;
-    }
+	if (!channel) {
+		return <ActivityIndicator />;
+	}
 
-    return (
-        <Channel channel={channel}>
-            <MessageList />
-            <SafeAreaView edges={['bottom']}>
-                <MessageInput />
-            </SafeAreaView>
-        </Channel>
-    );
+	return (
+		<Channel channel={channel}>
+			<MessageList />
+			<SafeAreaView edges={['bottom']}>
+				<MessageInput />
+			</SafeAreaView>
+		</Channel>
+	);
 };

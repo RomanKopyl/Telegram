@@ -24,6 +24,11 @@ export default function MainTabScreen() {
 			<ChannelList
 				filters={{ members: { $in: [user.id] } }}
 				onSelect={(channel: ChannelType) => router.push(`/channel/${channel.cid}`)}
+			// onSelect={(channel: ChannelType) => {
+
+			// 	console.log('CID', channel.cid);
+			// 	router.push(`/channel/${channel.cid}`)
+			// }}
 			/>
 		</>
 	);
