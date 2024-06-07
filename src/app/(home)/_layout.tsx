@@ -1,6 +1,7 @@
 import { Redirect, Stack } from "expo-router";
 import { useAuth } from "../../providers/AuthProvider";
 import ChatProvider from "../../providers/ChatProvider";
+import VideoProvider from "../../providers/VideoProvider";
 
 
 export default function HomeLayout() {
@@ -12,12 +13,14 @@ export default function HomeLayout() {
 
 	return (
 		<ChatProvider>
-			<Stack>
-				<Stack.Screen
-					name="(tabs)"
-					options={{ headerShown: false }}
-				/>
-			</Stack>
+			<VideoProvider>
+				<Stack>
+					<Stack.Screen
+						name="(tabs)"
+						options={{ headerShown: false }}
+					/>
+				</Stack>
+			</VideoProvider>
 		</ChatProvider>
 	);
 }

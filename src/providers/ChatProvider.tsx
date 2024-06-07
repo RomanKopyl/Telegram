@@ -31,12 +31,6 @@ export default function ChatProvider({ children }: PropsWithChildren) {
 				tokenProvider
 			);
 			setIsReady(true);
-
-			// const channel = client.channel('messaging', 'the_park', {
-			// 	name: 'The Park',
-			// });
-
-			// await channel.watch();
 		}
 
 		connect().catch(e => console.log('CONNECT CLIENT ERROR', e));
