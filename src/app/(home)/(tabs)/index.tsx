@@ -1,5 +1,5 @@
 import { FontAwesome5 } from '@expo/vector-icons';
-import { Link, Stack, router } from 'expo-router';
+import { Link, Redirect, Stack, router } from 'expo-router';
 import { Channel as ChannelType } from 'stream-chat';
 import { ChannelList } from 'stream-chat-expo';
 import { useAuth } from '../../../providers/AuthProvider';
@@ -9,6 +9,9 @@ export default function MainTabScreen() {
 
 	return (
 		<>
+			{/* TODO: delete later */}
+			<Redirect href={'/(home)/call'} />
+
 			<Stack.Screen options={{
 				headerRight: () =>
 					<Link href={'/(home)/users'} asChild>
@@ -24,11 +27,6 @@ export default function MainTabScreen() {
 			<ChannelList
 				filters={{ members: { $in: [user.id] } }}
 				onSelect={(channel: ChannelType) => router.push(`/channel/${channel.cid}`)}
-			// onSelect={(channel: ChannelType) => {
-
-			// 	console.log('CID', channel.cid);
-			// 	router.push(`/channel/${channel.cid}`)
-			// }}
 			/>
 		</>
 	);
