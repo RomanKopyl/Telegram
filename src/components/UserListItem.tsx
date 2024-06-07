@@ -16,14 +16,11 @@ const UserListItem = ({ user }) => {
   const { user: me } = useAuth();
 
   const onPress = async () => {
-    console.log('MEMBERS', me.id, user.id);
     const channel = client.channel('messaging', {
       members: [me.id, user.id],
     });
 
-    await channel.watch();
-    console.log('CHANNEL', channel.cid);
-    
+    await channel.watch();    
     router.replace(`/(home)/channel/${channel.cid}`);
   }
 

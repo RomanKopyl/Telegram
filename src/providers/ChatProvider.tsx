@@ -6,7 +6,7 @@ import { supabase } from "../lib/supabase";
 import { tokenProvider } from "../utils/tokenProvider";
 import { useAuth } from "./AuthProvider";
 
-const client = StreamChat.getInstance(process.env.EXPO_PUBLIC_CHAT_STREAM_API_KEY);
+const client = StreamChat.getInstance(process.env.EXPO_PUBLIC_STREAM_API_KEY);
 
 export default function ChatProvider({ children }: PropsWithChildren) {
 	const [isReady, setIsReady] = useState(false);
