@@ -1,18 +1,16 @@
 import {
   RingingCallContent,
   StreamCall,
-  useCall
+  useCalls
 } from '@stream-io/video-react-native-sdk';
 import { router } from 'expo-router';
 
-
 export default function CallScreen() {
-  const calls = useCall();
-  console.log('CALL', calls);
-  const call = calls?.[0];
-
+  const calls = useCalls();
+  const call = calls[0];
 
   // const [call, setCall] = useState<Call>();
+
   // const client = useStreamVideoClient();
 
   // useEffect(() => {
@@ -20,24 +18,21 @@ export default function CallScreen() {
   //     const call = client.call('default', id);
   //     await call.get();
   //     setCall(call);
-  //   }
+  //   };
   //   fetchCall();
-
   //   return () => {
   //     if (call) {
   //       call.leave();
   //     }
-  //   }
+  //   };
   // }, [id]);
 
-
   if (!call) {
-    if ((router.canGoBack())) {
+    if (router.canGoBack) {
       router.back();
     } else {
       router.push('/');
     }
-
     return null;
   }
 

@@ -37,7 +37,9 @@ export default function CallProvider({ children }: PropsWithChildren) {
               right: 0,
               padding: 10,
             }}>
-            <Text>Active call: {call.id}</Text>
+            <Text>
+              Call: {call.id} ({call.state.callingState})
+            </Text>
           </Pressable>)
       }
     </>
